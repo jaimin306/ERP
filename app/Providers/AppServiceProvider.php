@@ -38,6 +38,21 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Admin\Country\EloquentCountryRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\Admin\State\StateRepositoryContract::class,
+            \App\Repositories\Admin\State\EloquentStateRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\Department\DepartmentRepositoryContract::class,
+            \App\Repositories\Admin\Department\EloquentDepartmentRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\Designation\DesignationRepositoryContract::class,
+            \App\Repositories\Admin\Designation\EloquentDesignationRepository::class
+        );
+
     }
 
 }

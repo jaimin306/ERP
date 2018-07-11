@@ -29,7 +29,9 @@ class StoreCountryRequest extends Request
     public function rules()
     {
         return [
-            'name'                  => 'required'
+            'name'                  => 'required',
+            'shortname'                  => 'required',
+            'phonecode'                  => 'required'
         ];
     }
 }

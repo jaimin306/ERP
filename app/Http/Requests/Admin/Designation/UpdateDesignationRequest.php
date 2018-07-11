@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Country;
+namespace App\Http\Requests\Admin\Designation;
 
 use App\Http\Requests\Request;
 
@@ -8,7 +8,7 @@ use App\Http\Requests\Request;
  * Class UpdateUserRequest
  * @package App\Http\Requests\Backend\Access\User
  */
-class UpdateCountryRequest extends Request
+class UpdateDesignationRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,9 +29,8 @@ class UpdateCountryRequest extends Request
     public function rules()
     {
         return [
-            'name'  => 'required',
-            'shortname'  => 'required',
-            'phonecode'  => 'required',
+            'designation_name'  => 'required',
+            'department_id'  => 'required',
         ];
     }
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Admin\Country;
+namespace App\Http\Requests\Backend\Course;
 
 use App\Http\Requests\Request;
 
 /**
- * Class UpdateUserRequest
+ * Class PermanentlyDeleteUserRequest
  * @package App\Http\Requests\Backend\Access\User
  */
-class UpdateCountryRequest extends Request
+class PermanentlyDeleteCourseRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,8 +17,7 @@ class UpdateCountryRequest extends Request
      */
     public function authorize()
     {
-        //return access()->allow('edit-countries');
-        return true;
+        return access()->allow('permanently-delete-courses');
     }
 
     /**
@@ -29,9 +28,7 @@ class UpdateCountryRequest extends Request
     public function rules()
     {
         return [
-            'name'  => 'required',
-            'shortname'  => 'required',
-            'phonecode'  => 'required',
+            //
         ];
     }
 }

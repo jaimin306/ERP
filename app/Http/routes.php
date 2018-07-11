@@ -25,7 +25,7 @@
  */
 //Route::group(['namespace' => 'Frontend'], function () {
 //Route::group(['namespace' => 'Admin', 'prefix' => 'Admin', 'middleware' => 'Admin'], function () {
-Route::group(['namespace' => 'Admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     /**
      * These routes need view-backend permission
      * (good if you want to allow more than one group in the backend,
@@ -37,9 +37,9 @@ Route::group(['namespace' => 'Admin'], function () {
     //print_r($_REQUEST);
     require (__DIR__ . '/Routes/Admin/Dashboard.php');
     require (__DIR__ . '/Routes/Admin/Country.php');
-    /*require (__DIR__ . '/Routes/Backend/Course.php');
-    require (__DIR__ . '/Routes/Backend/Slider.php');
-    require (__DIR__ . '/Routes/Backend/Module.php');
-    require (__DIR__ . '/Routes/Backend/Access.php');
+    require (__DIR__ . '/Routes/Admin/State.php');
+    require (__DIR__ . '/Routes/Admin/Department.php');
+    require (__DIR__ . '/Routes/Admin/Designation.php');
+    /*require (__DIR__ . '/Routes/Backend/Access.php');
     require (__DIR__ . '/Routes/Backend/LogViewer.php');*/
 });

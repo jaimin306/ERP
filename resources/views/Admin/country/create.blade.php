@@ -1,12 +1,22 @@
 
 @extends('Admin.layouts.master') 
 
+@section ('title', 'Country')
+
 @section('content')
 
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
             <h2>Country</h2>
+<?php
+//print_r($_SESSION);
+?>
+@if( Session::has( 'success' ))
+     {{ Session::get( 'success' ) }}ddd
+@elseif( Session::has( 'warning' ))
+     {{ Session::get( 'warning' ) }}dfff <!-- here to 'withWarning()' -->
+@endif
             <!-- <ol class="breadcrumb">
                 <li>
                     <a href="index-2.html">Home</a>
@@ -43,13 +53,13 @@
 
                             @if(Request::segment(4) != '')
 
-                            {!! Form::open(['route' => 'admin.country.update', 'files' => true, 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
+                            {!! Form::open(['route' => 'admin.country.update', 'files' => true, 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'id' => 'add']) !!}
 
                             <input type="hidden" name="id" id="id" value="{{Request::segment(4)}}" >
 
                             @else
 
-                            {!! Form::open(['route' => 'admin.country.store', 'files' => true, 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
+                            {!! Form::open(['route' => 'admin.country.store', 'files' => true, 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'id' => 'add']) !!}
                             @endif
                             <!-- <form method="get" class="form-horizontal"> -->
                                 <div class="form-group">
@@ -58,7 +68,27 @@
                                     <div class="col-sm-4">
                                         <!-- <input type="text" class="form-control"> -->
                                         <!-- {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name', 'value' => '{{$country->name}}' ]) !!} -->
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="@if(Request::segment(4) != ''){{$country->name}} @endif">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="@if(Request::segment(4) != ''){{trim($country->name)}} @endif">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {!! Form::label('name', 'Short Name', ['class' => 'col-lg-2 control-label']) !!}
+                                    <!-- <label class="col-sm-2 control-label">Normal</label> -->
+                                    <div class="col-sm-4">
+                                        <!-- <input type="text" class="form-control"> -->
+                                        <!-- {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name', 'value' => '{{$country->name}}' ]) !!} -->
+                                        <input type="text" name="shortname" id="shortname" class="form-control" placeholder="Short Name" value="@if(Request::segment(4) != ''){{trim($country->shortname)}} @endif">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {!! Form::label('name', 'Phone Code', ['class' => 'col-lg-2 control-label']) !!}
+                                    <!-- <label class="col-sm-2 control-label">Normal</label> -->
+                                    <div class="col-sm-4">
+                                        <!-- <input type="text" class="form-control"> -->
+                                        <!-- {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name', 'value' => '{{$country->name}}' ]) !!} -->
+                                        <input type="text" name="phonecode" id="phonecode" class="form-control" placeholder="Phone Code" value="@if(Request::segment(4) != ''){{trim($country->phonecode)}}@endif">
                                     </div>
                                 </div>
 
@@ -75,7 +105,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <button class="btn btn-white" type="submit">Cancel</button>
+                                        <a class="btn btn-white" href="{{route('admin.country')}}" >Cancel</a>
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </div>
                                 </div>
@@ -92,3 +122,17 @@
 @stop
 
         
+@section('javascript')
+<script type="text/javascript">
+
+$("#add").validate({
+    rules: {
+        name: "required",
+        shortname: "required",
+        phonecode: "required",
+    },
+});
+
+
+</script>
+@stop

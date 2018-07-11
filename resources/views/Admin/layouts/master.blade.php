@@ -21,6 +21,9 @@
     <link href="{{URL::asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
 
     <link href="{{URL::asset('css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/custom.css')}}" rel="stylesheet">
+    {!! Html::style('css/toastr.min.css') !!}
+    
 
 </head>
 
@@ -39,7 +42,7 @@
 
             <!-- Main content -->
             <section class="content">
-               
+                @include('includes.partials.messages')
                 @yield('content')
             </section><!-- /.content -->
         <!-- /.content-wrapper -->
@@ -64,6 +67,8 @@
 
 
     {!! Html::script('js/plugins/pace/pace.min.js') !!}
+    {!! Html::script('js/plugins/validate/jquery.validate.min.js') !!}
+    {!! Html::script('js/toastr.min.js') !!}
     
 
     

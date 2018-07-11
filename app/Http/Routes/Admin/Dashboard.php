@@ -4,4 +4,4 @@
 
 //echo "sdwwf";die;
 
-Route::get('admin/dashboard', 'DashboardController@index')->name('admin.dashboard');
+Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');

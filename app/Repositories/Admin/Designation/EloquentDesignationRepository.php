@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories\Admin\Country;
+namespace App\Repositories\Admin\Designation;
 
-use App\Models\Admin\Country;
+use App\Models\Admin\Designation\Designation;
 use DB;
 
 
 /**
- * Class EloquentUserRepository
- * @package App\Repositories\User
+ * Class EloquentDesignationRepository
+ * @package App\Repositories\Designation
  */
-class EloquentCountryRepository implements CountryRepositoryContract
+class EloquentDesignationRepository implements DesignationRepositoryContract
 {
     
 
@@ -37,11 +37,11 @@ class EloquentCountryRepository implements CountryRepositoryContract
             $user = Course::with('roles')->withTrashed()->find($id);
         } else {*/
             //$course = Course::withTrashed()->find($id);
-            $country = Country::find($id);
+            $designation = Designation::find($id);
         /*}*/
 
-        if (!is_null($country)) {
-            return $country;
+        if (!is_null($designation)) {
+            return $designation;
         }
 
         //throw new GeneralException(trans('exceptions.backend.access.users.not_found'));
@@ -54,22 +54,26 @@ class EloquentCountryRepository implements CountryRepositoryContract
      * @param  int         $status
      * @return mixed
      */
-    public function getCountryPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
+    public function getDesignationPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
     {
-        /*return Country::where('status', $status)
+        /*return Designation::where('status', $status)
             ->orderBy($order_by, $sort)
             ->paginate($per_page);*/
-        return Country::orderBy($order_by, $sort)
-            ->paginate($per_page);
+        /*return Designation::orderBy($order_by, $sort)
+            ->paginate($per_page);*/
+
+        return Designation::leftJoin('departments', 'departments.id', '=', 'designation.department_id')
+            ->select('departments.id as department_id', 'designation.department_id as designation_department_id', 'departments.name as department_name', 'departments.id as department_id')
+            ->get();
     }
 
     /**
      * @param  $per_page
      * @return \Illuminate\Pagination\Paginator
      */
-    public function getDeletedCountryPaginated($per_page)
+    public function getDeletedDesignationPaginated($per_page)
     {
-        return Country::onlyTrashed()
+        return Designation::onlyTrashed()
             ->paginate($per_page);
     }
 
@@ -78,9 +82,9 @@ class EloquentCountryRepository implements CountryRepositoryContract
      * @param  string  $sort
      * @return mixed
      */
-    public function getAllCountry($order_by = 'id', $sort = 'asc')
+    public function getAllDesignation($order_by = 'id', $sort = 'asc')
     {
-        return Country::orderBy($order_by, $sort)
+        return Designation::orderBy($order_by, $sort)
             ->get();
     }
 
@@ -98,13 +102,13 @@ class EloquentCountryRepository implements CountryRepositoryContract
        //echo "<pre>";print_r($input);die;
 
        //throw new GeneralException(trans('exceptions.backend.access.users.create_error'));
-       $country = $this->createCountryStub($input);
+       $designation = $this->createDesignationStub($input);
        //print_r($course);die;
 
 
-        if ($country->save()) {
+        if ($designation->save()) {
            
-            $insertedId = $country->id;
+            $insertedId = $designation->id;
 
             return $insertedId;
         }
@@ -116,17 +120,16 @@ class EloquentCountryRepository implements CountryRepositoryContract
      * @param  $input
      * @return mixed
      */
-    public function createCountryStub($input)
+    public function createDesignationStub($input)
     {
         
-        $country                    = new Country;
-        $country->name              = $input['name'];
-        $country->shortname              = $input['shortname'];
-        $country->phonecode              = $input['phonecode'];
-        //$country->status            = isset($input['status']) ? 1 : 0;
-        //print_r($country);die;
+        $designation                    = new Designation;
+        $designation->designation_name              = $input['designation_name'];
+        $designation->department_id              = $input['department_id'];
         
-        return $country;
+        //print_r($Designation);die;
+        
+        return $designation;
     }
 
     /**
@@ -139,18 +142,18 @@ class EloquentCountryRepository implements CountryRepositoryContract
      */
     public function update($input)
     {
-        $country = $this->findOrThrowException($input['id']);
+        $designation = $this->findOrThrowException($input['id']);
         //$this->checkUserByEmail($input, $user);
         //print_r($course);die;
 
         
 
-        if ($country->update($input)) {
+        if ($designation->update($input)) {
             //For whatever reason this just wont work in the above call, so a second is needed for now
-            $country->name              = $input['name'];
-            $country->shortname              = $input['shortname'];
-            $country->phonecode              = $input['phonecode'];
-            $country->save();
+            $designation->department_name              = $input['department_name'];
+            $designation->department_id              = $input['department_id'];
+            
+            $designation->save();
 
             //$this->checkUserRolesCount($roles);
             //$this->flushRoles($roles, $user);
@@ -171,12 +174,12 @@ class EloquentCountryRepository implements CountryRepositoryContract
     {
         //print_r($id);echo "string";die;
 
-        $country = $this->findOrThrowException($id, true);
+        $designation = $this->findOrThrowException($id, true);
 
         try {
 
             //$course->forceDelete();
-            $country->delete();
+            $designation->delete();
             return true;
 
         } catch (\Exception $e) {

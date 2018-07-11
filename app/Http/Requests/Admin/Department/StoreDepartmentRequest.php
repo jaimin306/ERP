@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Admin\Country;
+namespace App\Http\Requests\Admin\Department;
 
 use App\Http\Requests\Request;
 
 /**
- * Class UpdateUserRequest
+ * Class StoreUserRequest
  * @package App\Http\Requests\Backend\Access\User
  */
-class UpdateCountryRequest extends Request
+class StoreDepartmentRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +17,7 @@ class UpdateCountryRequest extends Request
      */
     public function authorize()
     {
-        //return access()->allow('edit-countries');
+        //return access()->allow('create-countries');
         return true;
     }
 
@@ -29,9 +29,7 @@ class UpdateCountryRequest extends Request
     public function rules()
     {
         return [
-            'name'  => 'required',
-            'shortname'  => 'required',
-            'phonecode'  => 'required',
+            'name'                  => 'required'
         ];
     }
 }
