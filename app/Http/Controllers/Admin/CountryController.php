@@ -7,9 +7,11 @@ use App\Repositories\Admin\Country\CountryRepositoryContract;
 use App\Http\Requests\Admin\Country\CreateCountryRequest;
 use App\Http\Requests\Admin\Country\StoreCountryRequest;
 use App\Http\Requests\Admin\Country\UpdateCountryRequest;
+use App\Http\Requests\Admin\Country\DeleteCountryRequest;
 use App\Http\Requests;
 
 use Session;
+
 
 
 
@@ -89,36 +91,19 @@ class CountryController extends Controller
         return redirect()->route('admin.country')->withFlashSuccess('Record updated successfully');
     }
 
-    public function destroy()
-    {
-    	$id=$_POST['id'];//die;
-
-        $destroyed = $country->delete();
-
-        $json['status'] = $destroyed ? 1 : 0;
-        //echo json_encode($json);
-        //return Response::json($json_encode);
-        return response()->json($json);
-    }
-
     /**
      * @param  $id
      * @param  PermanentlyDeleteUserRequest $request
      * @return mixed
      */
     //public function delete($id)
-    public function delete()
+    public function delete(DeleteCountryRequest $request)
     {
-        //echo "dsf";print_r($request);die;
-        $id = $_REQUEST['id'];//die;
-        
+        $id = $request->id;
         $destroyed = $this->country->delete($id);
         $json['status'] = $destroyed ? 1 : 0;
-        //echo json_encode($json);
-        //return Response::json($json_encode);
         return response()->json($json);
-        //return redirect()->back()->withFlashSuccess('Record deleted successfully');
-        //return redirect()->route('admin.country')->withFlashSuccess('Record deleted successfully');
+        
     }
 
     

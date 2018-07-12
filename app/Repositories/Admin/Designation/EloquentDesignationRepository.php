@@ -177,8 +177,6 @@ class EloquentDesignationRepository implements DesignationRepositoryContract
         $designation = $this->findOrThrowException($id, true);
 
         try {
-
-            //$course->forceDelete();
             $designation->delete();
             return true;
 

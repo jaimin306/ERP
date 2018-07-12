@@ -10,6 +10,7 @@ use App\Repositories\Admin\Menu\MenuRepositoryContract;
 use App\Http\Requests\Admin\Designation\CreateDesignationRequest;
 use App\Http\Requests\Admin\Designation\StoreDesignationRequest;
 use App\Http\Requests\Admin\Designation\UpdateDesignationRequest;
+use App\Http\Requests\Admin\Designation\PermanentlyDeleteDesignationRequest;
 use App\Http\Requests;
 
 
@@ -86,9 +87,9 @@ class DesignationController extends Controller
         
         $input = $request->all();
         $designation = $this->designation->create($request->all());
+        $designation = $this->designation->create($request->all());
 
-        //return redirect()->route('admin.designation')->withFlashSuccess('Record inserted successfully');
-        return redirect()->route('admin.designation')->with('status', 'New book was added');
+        return redirect()->route('admin.designation')->withFlashSuccess('Record inserted successfully');
     }
 
     public function edit($id)
@@ -114,28 +115,16 @@ class DesignationController extends Controller
         return redirect()->route('admin.designation')->withFlashSuccess('Record updated successfully');
     }
 
-    public function destroy()
-    {
-        $id=$_POST['id'];//die;
-
-        $destroyed = $designation->delete();
-
-        $json['status'] = $destroyed ? 1 : 0;
-        //echo json_encode($json);
-        //return Response::json($json_encode);
-        return response()->json($json);
-    }
-
+   
     /**
      * @param  $id
      * @param  PermanentlyDeleteUserRequest $request
      * @return mixed
      */
     //public function delete($id)
-    public function delete()
+    public function delete(PermanentlyDeleteDesignationRequest $request)
     {
-        //echo "dsf";print_r($request);die;
-        $id = $_REQUEST['id'];//die;
+        $id = $request->id;
         
         $destroyed = $this->designation->delete($id);
         $json['status'] = $destroyed ? 1 : 0;

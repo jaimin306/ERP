@@ -8,8 +8,9 @@ use App\Repositories\Admin\Country\CountryRepositoryContract;
 use App\Http\Requests\Admin\State\CreateStateRequest;
 use App\Http\Requests\Admin\State\StoreStateRequest;
 use App\Http\Requests\Admin\State\UpdateStateRequest;
+use App\Http\Requests\Admin\State\PermanentlyDeleteStateRequest;
 use App\Http\Requests;
-
+use Illuminate\Http\Request;
 
 
 
@@ -122,18 +123,17 @@ class StateController extends Controller
      * @return mixed
      */
     //public function delete($id)
-    public function delete()
+    public function delete(Request $request)
     {
+//print_r($request);die;
+       
         //echo "dsf";print_r($request);die;
-        $id = $_REQUEST['id'];//die;
+        $id = $request->id;//die;
         
         $destroyed = $this->state->delete($id);
         $json['status'] = $destroyed ? 1 : 0;
-        //echo json_encode($json);
-        //return Response::json($json_encode);
         return response()->json($json);
-        //return redirect()->back()->withFlashSuccess('Record deleted successfully');
-        //return redirect()->route('admin.state')->withFlashSuccess('Record deleted successfully');
+        
     }
 
     

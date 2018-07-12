@@ -12,6 +12,7 @@ use App\Repositories\Admin\AccountType\AccountTypeRepositoryContract;
 use App\Http\Requests\Admin\AccountType\CreateAccountTypeRequest;
 use App\Http\Requests\Admin\AccountType\StoreAccountTypeRequest;
 use App\Http\Requests\Admin\AccountType\UpdateAccountTypeRequest;
+use App\Http\Requests\Admin\AccountType\PermanentlyDeleteAccountTypeRequest;
 use App\Http\Requests;
 
 use Session;
@@ -61,21 +62,9 @@ class AccountTypeController extends Controller
         return redirect()->route('admin.accountType')->withFlashSuccess('Record updated successfully');
     }
 
-    public function destroy()
+    public function delete(PermanentlyDeleteAccountTypeRequest $request)
     {
-        $id=$_POST['id'];//die;
-
-        $destroyed = $accountType->delete();
-
-        $json['status'] = $destroyed ? 1 : 0;
-        //echo json_encode($json);
-        //return Response::json($json_encode);
-        return response()->json($json);
-    }
-     public function delete()
-    {
-        $id = $_REQUEST['id'];//die;
-        
+        $id = $request->id;
         $destroyed = $this->accountType->delete($id);
         $json['status'] = $destroyed ? 1 : 0;
         return response()->json($json);

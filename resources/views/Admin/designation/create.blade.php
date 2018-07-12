@@ -91,6 +91,7 @@
                                            </thead>
                                         @foreach($menus as $menu)
                                             <tr>
+                                                <input type="text" name="menu_id_{{$menu->id}}" id="menu_id_{{$menu->id}}" >
                                                 <td class="col-lg-1">
                                                     <input type="checkbox" name="chk_all_{{$menu->id}}" id="chk_all_{{$menu->id}}" >
                                                 </td>
@@ -167,11 +168,13 @@ $(document).ready(function(){
             $("#chk_edit_"+id).prop("checked",true);
             $("#chk_delete_"+id).prop("checked",true);
             $("#chk_view_"+id).prop("checked",true);
+            $("#menu_id_"+id).val(id);
         }else{
             $("#chk_create_"+id).prop("checked",false);
             $("#chk_edit_"+id).prop("checked",false);
             $("#chk_delete_"+id).prop("checked",false);
             $("#chk_view_"+id).prop("checked",false);
+            $("#menu_id_"+id).val('');
         }
     }); 
 
@@ -181,10 +184,13 @@ $(document).ready(function(){
         if ( $(this).is(":checked") ) {
             if ( ($("#chk_edit_"+id).is(":checked")) && ($("#chk_delete_"+id).is(":checked")) && ($("#chk_view_"+id).is(":checked")) ) {
                 $("#chk_all_"+id).prop("checked",true);
+                
             }
+            $("#menu_id_"+id).val(id);
         }else {
 
             $("#chk_all_"+id).prop("checked",false);
+            $("#menu_id_"+id).val('');
         }
 
     }); 
@@ -196,9 +202,11 @@ $(document).ready(function(){
             if ( ($("#chk_create_"+id).is(":checked")) && ($("#chk_delete_"+id).is(":checked")) && ($("#chk_view_"+id).is(":checked")) ) {
                 $("#chk_all_"+id).prop("checked",true);
             }
+            $("#menu_id_"+id).val(id);
         }else {
 
             $("#chk_all_"+id).prop("checked",false);
+            $("#menu_id_"+id).val('');
         }
 
     }); 
@@ -210,9 +218,11 @@ $(document).ready(function(){
             if ( ($("#chk_edit_"+id).is(":checked")) && ($("#chk_create_"+id).is(":checked")) && ($("#chk_view_"+id).is(":checked")) ) {
                 $("#chk_all_"+id).prop("checked",true);
             }
+            $("#menu_id_"+id).val(id);
         }else {
 
             $("#chk_all_"+id).prop("checked",false);
+            $("#menu_id_"+id).val('');
         }
 
     }); 
@@ -224,9 +234,11 @@ $(document).ready(function(){
             if ( ($("#chk_edit_"+id).is(":checked")) && ($("#chk_delete_"+id).is(":checked")) && ($("#chk_create_"+id).is(":checked")) ) {
                 $("#chk_all_"+id).prop("checked",true);
             }
+            $("#menu_id_"+id).val(id);
         }else {
 
             $("#chk_all_"+id).prop("checked",false);
+            $("#menu_id_"+id).val('');
         }
 
     });

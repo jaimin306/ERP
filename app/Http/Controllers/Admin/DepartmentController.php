@@ -7,6 +7,7 @@ use App\Repositories\Admin\Department\DepartmentRepositoryContract;
 use App\Http\Requests\Admin\Department\CreateDepartmentRequest;
 use App\Http\Requests\Admin\Department\StoreDepartmentRequest;
 use App\Http\Requests\Admin\Department\UpdateDepartmentRequest;
+use App\Http\Requests\Admin\Department\PermanentlyDeleteDepartmentRequest;
 use App\Http\Requests;
 use Session;
 
@@ -99,10 +100,10 @@ class DepartmentController extends Controller
      * @return mixed
      */
     //public function delete($id)
-    public function delete()
+    public function delete(PermanentlyDeleteDepartmentRequest $request)
     {
         //echo "dsf";print_r($request);die;
-        $id = $_REQUEST['id'];//die;
+        $id = $request->id;//die;
         
         $destroyed = $this->department->delete($id);
         $json['status'] = $destroyed ? 1 : 0;

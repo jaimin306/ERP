@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\State;
+namespace App\Http\Requests\Admin\Designation;
 
 use App\Http\Requests\Request;
 
@@ -8,7 +8,7 @@ use App\Http\Requests\Request;
  * Class PermanentlyDeleteUserRequest
  * @package App\Http\Requests\Backend\Access\User
  */
-class PermanentlyDeleteStateRequest extends Request
+class PermanentlyDeleteDesignationRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +17,8 @@ class PermanentlyDeleteStateRequest extends Request
      */
     public function authorize()
     {
-        return access()->allow('permanently-delete-courses');
+        //return access()->allow('permanently-delete-courses');
+        return true;
     }
 
     /**

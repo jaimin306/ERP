@@ -17,7 +17,8 @@ class PermanentlyDeleteStateRequest extends Request
      */
     public function authorize()
     {
-        return access()->allow('permanently-delete-courses');
+        //return access()->allow('permanently-delete-courses');
+        return true;
     }
 
     /**
