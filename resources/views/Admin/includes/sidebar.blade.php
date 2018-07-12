@@ -31,35 +31,21 @@
                     </ul> -->
                 </li>
 
-                <li>
+                <li class="{{ Request::path() == 'admin/country' ? 'active' : '' || Request::path() == 'admin/state' ? 'active' : '' }}">
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{route('admin.country')}}">Countries</a></li>
-                        <li><a href="{{route('admin.state')}}">States</a></li>
-                        <li><a href="{{route('admin.department')}}">Departments</a></li>
-                        <li><a href="{{route('admin.department')}}">Designation</a></li>
-                        <!-- <li><a href="#">Create Country</a></li> -->
+                        <li class="{{ Request::path() == 'admin/country' ? 'active' : '' }}"><a href="{{route('admin.country')}}">Countries</a></li>
+                        <li class="{{ Request::path() == 'admin/state' ? 'active' : '' }}"><a href="{{route('admin.state')}}">States</a></li>
+                        <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Departments</a></li>
+                        <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Designation</a></li>
+                        <li ><a href="{{route('admin.accountType')}}">Account Type</a></li>
+                        <li><a href="{{route('admin.accountType')}}">Default Account</a></li>
+                        
                     </ul>
                 </li>
                 <li>
                     <a href=""><i class="fa fa-key"></i> <span class="nav-label">Settings</span> <span class=""></span></a>
-                    <!-- <ul class="nav nav-second-level collapse">
-                        <li><a href="index-2.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
-                    </ul> -->
                 </li>
-                
-               <!--  <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">States</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">view states</a></li>
-                        <li><a href="#">Create State</a></li>
-                    </ul>
-                </li> -->
-                
             </ul>
 
         </div>
