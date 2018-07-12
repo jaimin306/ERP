@@ -32,6 +32,7 @@
                     </ul> -->
                 </li>
 
+<<<<<<< HEAD
                 <li>
                     <a href="#"  class="{{ Active::checkRoutePattern('admin/*') }}" ><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
@@ -40,17 +41,23 @@
                         <li><a href="{{route('admin.department')}}">Departments</a></li>
                         <li><a href="{{route('admin.designation')}}">Designation</a></li>
                         <!-- <li><a href="#">Create Country</a></li> -->
+=======
+                <li class="{{ Request::path() == 'admin/country' ? 'active' : '' || Request::path() == 'admin/state' ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="{{ Request::path() == 'admin/country' ? 'active' : '' }}"><a href="{{route('admin.country')}}">Countries</a></li>
+                        <li class="{{ Request::path() == 'admin/state' ? 'active' : '' }}"><a href="{{route('admin.state')}}">States</a></li>
+                        <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Departments</a></li>
+                        <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Designation</a></li>
+                        <li ><a href="{{route('admin.accountType')}}">Account Type</a></li>
+                        <li><a href="{{route('admin.accountType')}}">Default Account</a></li>
+                        
+>>>>>>> ebba80d711129a59eb237c7751f6ad182cb6a983
                     </ul>
                 </li>
-                
-               <!--  <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">States</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">view states</a></li>
-                        <li><a href="#">Create State</a></li>
-                    </ul>
-                </li> -->
-                
+                <li>
+                    <a href=""><i class="fa fa-key"></i> <span class="nav-label">Settings</span> <span class=""></span></a>
+                </li>
             </ul>
 
         </div>

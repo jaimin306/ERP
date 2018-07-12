@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Requests\Admin\Department;
 
 use App\Http\Requests\Request;
-
 /**
  * Class StoreUserRequest
  * @package App\Http\Requests\Backend\Access\User
@@ -29,7 +27,7 @@ class StoreDepartmentRequest extends Request
     public function rules()
     {
         return [
-            'department_name'                  => 'required'
+            'department_name'=> 'required'
         ];
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests\Admin\Department;
 
 use App\Http\Requests\Request;
