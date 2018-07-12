@@ -23,41 +23,29 @@
                 <li>
                     
                     <a href="{{route('admin.dashboard')}}"  class="{{ Active::checkRoutePattern('admin/dashboard') }}" ><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class=""></span></a>
-                    <!-- <ul class="nav nav-second-level collapse">
-                        <li><a href="index-2.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
-                    </ul> -->
+                    
                 </li>
-
-<<<<<<< HEAD
-                <li>
+<li class="{{ Request::path() == 'admin/country' ? 'active' : '' || Request::path() == 'admin/state' ? 'active' : '' }}">
                     <a href="#"  class="{{ Active::checkRoutePattern('admin/*') }}" ><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li class="{{ Active::checkRoutePattern('admin/country/*') }}" ><a href="{{route('admin.country')}}">Countries</a></li>
+                    <!-- <ul class="nav nav-second-level collapse"> -->
+                        <!-- <li class="{{ Active::checkRoutePattern('admin/country/*') }}" ><a href="{{route('admin.country')}}">Countries</a></li>
                         <li><a href="{{route('admin.state')}}">States</a></li>
                         <li><a href="{{route('admin.department')}}">Departments</a></li>
-                        <li><a href="{{route('admin.designation')}}">Designation</a></li>
-                        <!-- <li><a href="#">Create Country</a></li> -->
-=======
-                <li class="{{ Request::path() == 'admin/country' ? 'active' : '' || Request::path() == 'admin/state' ? 'active' : '' }}">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li class="{{ Request::path() == 'admin/country' ? 'active' : '' }}"><a href="{{route('admin.country')}}">Countries</a></li>
-                        <li class="{{ Request::path() == 'admin/state' ? 'active' : '' }}"><a href="{{route('admin.state')}}">States</a></li>
-                        <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Departments</a></li>
-                        <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Designation</a></li>
-                        <li ><a href="{{route('admin.accountType')}}">Account Type</a></li>
-                        <li><a href="{{route('admin.accountType')}}">Default Account</a></li>
+                        <li><a href="{{route('admin.designation')}}">Designation</a></li> -->
                         
->>>>>>> ebba80d711129a59eb237c7751f6ad182cb6a983
-                    </ul>
-                </li>
-                <li>
-                    <a href=""><i class="fa fa-key"></i> <span class="nav-label">Settings</span> <span class=""></span></a>
-                </li>
+                            <!-- <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a> -->
+                            <ul class="nav nav-second-level collapse">
+                                <li class="{{ Request::path() == 'admin/country' ? 'active' : '' }}"><a href="{{route('admin.country')}}">Countries</a></li>
+                                <li class="{{ Request::path() == 'admin/state' ? 'active' : '' }}"><a href="{{route('admin.state')}}">States</a></li>
+                                <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Departments</a></li>
+                                <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Designation</a></li>
+                                <li ><a href="{{route('admin.accountType')}}">Account Type</a></li>
+                                <li><a href="{{route('admin.accountType')}}">Default Account</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=""><i class="fa fa-key"></i> <span class="nav-label">Settings</span> <span class=""></span></a>
+                        </li>
             </ul>
 
         </div>
