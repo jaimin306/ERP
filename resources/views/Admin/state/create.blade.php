@@ -54,14 +54,6 @@
 
                             <!-- {!! Form::open(['route' => 'admin.state.store', 'files' => true, 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!} -->
                             <!-- <form method="get" class="form-horizontal"> -->
-                                <div class="form-group">
-                                    {!! Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) !!}
-                                    <!-- <label class="col-sm-2 control-label">Normal</label> -->
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="name" id="name" value="@if(!empty(Request::segment(4))) {{$state->name}} @endif" >
-                                        <!-- {!! Form::text('name', null, [ 'value' => '', 'class' => 'form-control', 'placeholder' => 'Name']) !!} -->
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Select Country</label>
@@ -74,6 +66,17 @@
                                         </select>
                                     </div>
                                 </div>
+                                
+                                <div class="form-group">
+                                    {!! Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) !!}
+                                    <!-- <label class="col-sm-2 control-label">Normal</label> -->
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="name" id="name" value="@if(!empty(Request::segment(4))) {{$state->name}} @endif" >
+                                        <!-- {!! Form::text('name', null, [ 'value' => '', 'class' => 'form-control', 'placeholder' => 'Name']) !!} -->
+                                    </div>
+                                </div>
+
+                                
                                 
 
                                 <div class="hr-line-dashed"></div>
@@ -96,6 +99,7 @@
 
 @stop
 
+@section('javascript')
 <script type="text/javascript">
 
 /*$("#eeed").validate({
@@ -115,3 +119,4 @@ $("#add").validate({
 
 
 </script>
+@stop

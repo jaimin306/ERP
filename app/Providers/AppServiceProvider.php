@@ -53,6 +53,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Admin\Designation\EloquentDesignationRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\Admin\Menu\MenuRepositoryContract::class,
+            \App\Repositories\Admin\Menu\EloquentMenuRepository::class
+        );
+
     }
 
 }

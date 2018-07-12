@@ -62,8 +62,8 @@ class EloquentDesignationRepository implements DesignationRepositoryContract
         /*return Designation::orderBy($order_by, $sort)
             ->paginate($per_page);*/
 
-        return Designation::leftJoin('departments', 'departments.id', '=', 'designation.department_id')
-            ->select('departments.id as department_id', 'designation.department_id as designation_department_id', 'departments.name as department_name', 'departments.id as department_id')
+        return Designation::leftJoin('departments', 'departments.id', '=', 'designations.department_id')
+            ->select( 'designations.designation_name', 'designations.id as designation_id', 'departments.department_name', 'departments.id as department_id', 'designations.department_id as designation_department_id')
             ->get();
     }
 
@@ -150,7 +150,7 @@ class EloquentDesignationRepository implements DesignationRepositoryContract
 
         if ($designation->update($input)) {
             //For whatever reason this just wont work in the above call, so a second is needed for now
-            $designation->department_name              = $input['department_name'];
+            $designation->designation_name              = $input['designation_name'];
             $designation->department_id              = $input['department_id'];
             
             $designation->save();

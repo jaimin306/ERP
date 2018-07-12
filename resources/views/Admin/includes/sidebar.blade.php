@@ -21,7 +21,8 @@
                     </div>
                 </li>
                 <li>
-                    <a href="{{route('admin.dashboard')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class=""></span></a>
+                    
+                    <a href="{{route('admin.dashboard')}}"  class="{{ Active::checkRoutePattern('admin/dashboard') }}" ><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class=""></span></a>
                     <!-- <ul class="nav nav-second-level collapse">
                         <li><a href="index-2.html">Dashboard v.1</a></li>
                         <li><a href="dashboard_2.html">Dashboard v.2</a></li>
@@ -32,12 +33,12 @@
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
+                    <a href="#"  class="{{ Active::checkRoutePattern('admin/*') }}" ><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{route('admin.country')}}">Countries</a></li>
+                        <li class="{{ Active::checkRoutePattern('admin/country/*') }}" ><a href="{{route('admin.country')}}">Countries</a></li>
                         <li><a href="{{route('admin.state')}}">States</a></li>
                         <li><a href="{{route('admin.department')}}">Departments</a></li>
-                        <li><a href="{{route('admin.department')}}">Designation</a></li>
+                        <li><a href="{{route('admin.designation')}}">Designation</a></li>
                         <!-- <li><a href="#">Create Country</a></li> -->
                     </ul>
                 </li>

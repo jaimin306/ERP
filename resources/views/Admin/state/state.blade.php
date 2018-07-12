@@ -49,8 +49,9 @@
 
                     <thead>
                     <tr>
-                        <th>State Name</th>
                         <th>Country Name</th>
+                        <th>State Name</th>
+                        
                         <!-- <th>Status</th> -->
                         <th>Action</th>
                         <!-- <th>Platform(s)</th>
@@ -61,8 +62,9 @@
                     <tbody>
                         @foreach($states as $state)
                     <tr class="gradeX">
-                        <td>{{$state->state_name}}</td>
                         <td>{{$state->country_name}}</td>
+                        <td>{{$state->state_name}}</td>
+                        
                         <span class="hidden">{{$state->state_id}}</span>
                         <span class="hidden">{{$state->state_country_id}}</span>
                         <!-- <td>Status</td> -->

@@ -29,7 +29,7 @@ class StoreDepartmentRequest extends Request
     public function rules()
     {
         return [
-            'name'                  => 'required'
+            'department_name'                  => 'required'
         ];
     }
 }

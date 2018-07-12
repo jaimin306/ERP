@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDesignationsTable extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateDesignationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('designations', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('designation_name');
-            $table->unsignedInteger('department_id');
-
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->string('label');
+            $table->string('link');
+            $table->string('icon');
+            $table->integer('parent');
+            $table->integer('sort');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateDesignationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('designations');
+        Schema::dropIfExists('menus');
     }
 }

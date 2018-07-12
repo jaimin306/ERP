@@ -68,7 +68,7 @@
                                     <div class="col-sm-4">
                                         <!-- <input type="text" class="form-control"> -->
                                         <!-- {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name', 'value' => '{{$department->name}}' ]) !!} -->
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="@if(Request::segment(4) != ''){{trim($department->name)}} @endif">
+                                        <input type="text" name="department_name" id="department_name" class="form-control" placeholder="Name" value="@if(Request::segment(4) != ''){{trim($department->department_name)}} @endif">
                                     </div>
                                 </div>
 
@@ -98,7 +98,7 @@
 
 $("#add").validate({
     rules: {
-        name: "required"
+        department_name: "required"
     }
 });
 

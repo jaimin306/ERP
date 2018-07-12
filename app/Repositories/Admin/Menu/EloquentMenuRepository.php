@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories\Admin\Department;
+namespace App\Repositories\Admin\Menu;
 
-use App\Models\Admin\Department\Department;
+use App\Models\Admin\Menu\Menu;
 use DB;
 
 
 /**
- * Class EloquentUserRepository
- * @package App\Repositories\User
+ * Class EloquentStateRepository
+ * @package App\Repositories\State
  */
-class EloquentDepartmentRepository implements DepartmentRepositoryContract
+class EloquentMenuRepository implements MenuRepositoryContract
 {
     
 
@@ -37,11 +37,11 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
             $user = Course::with('roles')->withTrashed()->find($id);
         } else {*/
             //$course = Course::withTrashed()->find($id);
-            $department = Department::find($id);
+            $menu = Menu::find($id);
         /*}*/
 
-        if (!is_null($department)) {
-            return $department;
+        if (!is_null($menu)) {
+            return $menu;
         }
 
         //throw new GeneralException(trans('exceptions.backend.access.users.not_found'));
@@ -54,22 +54,23 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @param  int         $status
      * @return mixed
      */
-    public function getDepartmentPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
+    public function getMenuPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
     {
-        /*return Department::where('status', $status)
+        /*return State::where('status', $status)
             ->orderBy($order_by, $sort)
             ->paginate($per_page);*/
-        return Department::orderBy($order_by, $sort)
+        return Menu::orderBy($order_by, $sort)
             ->paginate($per_page);
+
     }
 
     /**
      * @param  $per_page
      * @return \Illuminate\Pagination\Paginator
      */
-    public function getDeletedDepartmentPaginated($per_page)
+    public function getDeletedMenuPaginated($per_page)
     {
-        return Department::onlyTrashed()
+        return Menu::onlyTrashed()
             ->paginate($per_page);
     }
 
@@ -78,9 +79,9 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @param  string  $sort
      * @return mixed
      */
-    public function getAllDepartment($order_by = 'id', $sort = 'asc')
+    public function getAllMenu($order_by = 'id', $sort = 'asc')
     {
-        return Department::orderBy($order_by, $sort)
+        return Menu::orderBy($order_by, $sort)
             ->get();
     }
 
@@ -92,39 +93,41 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @throws UserNeedsRolesException
      * @return bool
      */
-    public function create($input)
+   /* public function create($input)
     {
 
        //echo "<pre>";print_r($input);die;
 
        //throw new GeneralException(trans('exceptions.backend.access.users.create_error'));
-       $department = $this->createDepartmentStub($input);
+       $menu = $this->createMenuStub($input);
        //print_r($course);die;
 
 
-        if ($department->save()) {
+        if ($menu->save()) {
            
-            $insertedId = $department->id;
+            $insertedId = $menu->id;
 
             return $insertedId;
         }
 
         //throw new GeneralException(trans('exceptions.backend.access.users.create_error'));
     }
-
+*/
     /**
      * @param  $input
      * @return mixed
      */
-    public function createDepartmentStub($input)
+    /*public function createStateStub($input)
     {
         
-        $department                    = new Department;
-        $department->department_name              = $input['department_name'];
-        //print_r($department);die;
+        $menu                    = new State;
+        $state->name              = $input['name'];
+        $state->country_id              = $input['country_id'];
         
-        return $department;
-    }
+        //print_r($state);die;
+        
+        return $state;
+    }*/
 
     /**
      * @param $id
@@ -134,19 +137,20 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @return bool
      * @throws GeneralException
      */
-    public function update($input)
+   /* public function update($input)
     {
-        $department = $this->findOrThrowException($input['id']);
+        $state = $this->findOrThrowException($input['id']);
         //$this->checkUserByEmail($input, $user);
         //print_r($course);die;
 
         
 
-        if ($department->update($input)) {
+        if ($state->update($input)) {
             //For whatever reason this just wont work in the above call, so a second is needed for now
-            $department->department_name              = $input['department_name'];
-
-            $department->save();
+            $state->name              = $input['name'];
+            $state->country_id              = $input['country_id'];
+            
+            $state->save();
 
             //$this->checkUserRolesCount($roles);
             //$this->flushRoles($roles, $user);
@@ -156,28 +160,28 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
         }
 
         //throw new GeneralException(trans('exceptions.backend.access.users.update_error'));
-    }
+    }*/
 
     /**
      * @param  $id
      * @throws GeneralException
      * @return boolean|null
      */
-    public function delete($id)
+    /*public function delete($id)
     {
         //print_r($id);echo "string";die;
 
-        $department = $this->findOrThrowException($id, true);
+        $state = $this->findOrThrowException($id, true);
 
         try {
 
             //$course->forceDelete();
-            $department->delete();
+            $state->delete();
             return true;
 
         } catch (\Exception $e) {
            // throw new GeneralException($e->getMessage());
         }
-    }
+    }*/
     
 }

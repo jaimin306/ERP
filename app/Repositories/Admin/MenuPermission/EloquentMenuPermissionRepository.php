@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Admin\Department;
+namespace App\Repositories\Admin\MenuPermission;
 
-use App\Models\Admin\Department\Department;
+use App\Models\Admin\MenuPermission;
 use DB;
 
 
@@ -10,7 +10,7 @@ use DB;
  * Class EloquentUserRepository
  * @package App\Repositories\User
  */
-class EloquentDepartmentRepository implements DepartmentRepositoryContract
+class EloquentMenuPermissionRepository implements MenuPermissionRepositoryContract
 {
     
 
@@ -37,11 +37,11 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
             $user = Course::with('roles')->withTrashed()->find($id);
         } else {*/
             //$course = Course::withTrashed()->find($id);
-            $department = Department::find($id);
+            $menu_permission = MenuPermission::find($id);
         /*}*/
 
-        if (!is_null($department)) {
-            return $department;
+        if (!is_null($menu_permission)) {
+            return $menu_permission;
         }
 
         //throw new GeneralException(trans('exceptions.backend.access.users.not_found'));
@@ -54,12 +54,12 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @param  int         $status
      * @return mixed
      */
-    public function getDepartmentPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
+    public function getMenuPermissionPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
     {
-        /*return Department::where('status', $status)
+        /*return Country::where('status', $status)
             ->orderBy($order_by, $sort)
             ->paginate($per_page);*/
-        return Department::orderBy($order_by, $sort)
+        return MenuPermission::orderBy($order_by, $sort)
             ->paginate($per_page);
     }
 
@@ -67,9 +67,9 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @param  $per_page
      * @return \Illuminate\Pagination\Paginator
      */
-    public function getDeletedDepartmentPaginated($per_page)
+    public function getDeletedMenuPermissionPaginated($per_page)
     {
-        return Department::onlyTrashed()
+        return MenuPermission::onlyTrashed()
             ->paginate($per_page);
     }
 
@@ -78,9 +78,9 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @param  string  $sort
      * @return mixed
      */
-    public function getAllDepartment($order_by = 'id', $sort = 'asc')
+    public function getAllMenuPermission($order_by = 'id', $sort = 'asc')
     {
-        return Department::orderBy($order_by, $sort)
+        return MenuPermission::orderBy($order_by, $sort)
             ->get();
     }
 
@@ -98,13 +98,13 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
        //echo "<pre>";print_r($input);die;
 
        //throw new GeneralException(trans('exceptions.backend.access.users.create_error'));
-       $department = $this->createDepartmentStub($input);
+       $menu_permission = $this->createMenuPermissionStub($input);
        //print_r($course);die;
 
 
-        if ($department->save()) {
+        if ($menu_permission->save()) {
            
-            $insertedId = $department->id;
+            $insertedId = $menu_permission->id;
 
             return $insertedId;
         }
@@ -116,14 +116,20 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      * @param  $input
      * @return mixed
      */
-    public function createDepartmentStub($input)
+    public function createMenuPermissionStub($input)
     {
         
-        $department                    = new Department;
-        $department->department_name              = $input['department_name'];
-        //print_r($department);die;
+        $menu_permission                    = new MenuPermission;
+        $menu_permission->menu_id           = $input['menu_id'];
+        $menu_permission->designation_id    = $input['designation_id'];
+        $menu_permission->create            = $input['create'];
+        $menu_permission->edit              = $input['edit'];
+        $menu_permission->delete            = $input['delete'];
+        $menu_permission->view              = $input['view'];
+        //$country->status            = isset($input['status']) ? 1 : 0;
+        //print_r($country);die;
         
-        return $department;
+        return $menu_permission;
     }
 
     /**
@@ -136,17 +142,22 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
      */
     public function update($input)
     {
-        $department = $this->findOrThrowException($input['id']);
+        $menu_permission = $this->findOrThrowException($input['id']);
         //$this->checkUserByEmail($input, $user);
         //print_r($course);die;
 
         
 
-        if ($department->update($input)) {
+        if ($menu_permission->update($input)) {
             //For whatever reason this just wont work in the above call, so a second is needed for now
-            $department->department_name              = $input['department_name'];
+            $menu_permission->menu_id              = $input['menu_id'];
+            $menu_permission->designation_id       = $input['designation_id'];
+            $menu_permission->create               = $input['create'];
+            $menu_permission->edit                 = $input['edit'];
+            $menu_permission->delete               = $input['delete'];
+            $menu_permission->view                 = $input['view'];
 
-            $department->save();
+            $menu_permission->save();
 
             //$this->checkUserRolesCount($roles);
             //$this->flushRoles($roles, $user);
@@ -167,12 +178,12 @@ class EloquentDepartmentRepository implements DepartmentRepositoryContract
     {
         //print_r($id);echo "string";die;
 
-        $department = $this->findOrThrowException($id, true);
+        $menu_permission = $this->findOrThrowException($id, true);
 
         try {
 
             //$course->forceDelete();
-            $department->delete();
+            $menu_permission->delete();
             return true;
 
         } catch (\Exception $e) {

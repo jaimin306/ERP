@@ -57,7 +57,7 @@
                     <tbody>
                         @foreach($departments as $department)
                     <tr class="gradeX">
-                        <td>{{$department->name}}</td>
+                        <td>{{$department->department_name}}</td>
                         <span class="hidden">{{$department->id}}</span>
                         <!-- <td>Status</td> -->
                         <td class="center">

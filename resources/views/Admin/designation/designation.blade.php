@@ -1,14 +1,14 @@
 
 @extends('Admin.layouts.master') 
 
-@section ('title', 'States')
+@section ('title', 'Designation')
 
 @section('content')
 
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>States</h2>
+            <h2>Designations</h2>
             <!-- <ol class="breadcrumb">
                 <li>
                     <a href="index-2.html">Home</a>
@@ -28,7 +28,7 @@
 
 
      <?php
-     //echo "<pre>"; print_r($states)
+     //echo "<pre>"; print_r($designations)
      ?>   
             <div class="wrapper wrapper-content">
                
@@ -38,8 +38,8 @@
                         <div class="ibox-title">
                             
                             <h5 style="width: 100%;">
-                                Manage States 
-                                <a href="{{route('admin.state.create')}}" class="btn btn-success btn-sm pull-right" ><i class="fa fa-plus"></i> <b>Add</b></a>
+                                Manage Designation 
+                                <a href="{{route('admin.designation.create')}}" class="btn btn-success btn-sm pull-right" ><i class="fa fa-plus"></i> <b>Add</b></a>
                             </h5>
                         </div>
                         <div class="ibox-content">
@@ -49,8 +49,9 @@
 
                     <thead>
                     <tr>
-                        <th>State Name</th>
-                        <th>Country Name</th>
+                        
+                        <th>Department</th>
+                        <th>Designation Name</th>
                         <!-- <th>Status</th> -->
                         <th>Action</th>
                         <!-- <th>Platform(s)</th>
@@ -59,23 +60,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($states as $state)
+                        @foreach($designations as $designation)
                     <tr class="gradeX">
-                        <td>{{$state->state_name}}</td>
-                        <td>{{$state->country_name}}</td>
-                        <span class="hidden">{{$state->state_id}}</span>
-                        <span class="hidden">{{$state->state_country_id}}</span>
+                        
+                        <td>{{$designation->department_name}}</td>
+                        <td>{{$designation->designation_name}}</td>
+                        <span class="hidden">{{$designation->designation_id}}</span>
+                        <span class="hidden">{{$designation->designation_department_id}}</span>
                         <!-- <td>Status</td> -->
                         <td class="center">
                             
-                            <span class="btn btn-xs btn-primary editData" id="edit-{{$state->state_id}}">
-                            <a href="{{route('admin.state.edit', $state->state_id)}}">
+                            <span class="btn btn-xs btn-primary editData" id="edit-{{$designation->designation_id}}">
+                            <a href="{{route('admin.designation.edit', $designation->designation_id)}}">
                                 <i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"></i>
                             </a>
                             </span>
                             
                             <span class="btn btn-xs btn-danger">
-                                <!-- <button type="submit" name="delete" id="delete" > --><i class="fa fa-trash delRecord" id="delete-{{$state->state_id}}" ></i><!-- </button> -->
+                                <!-- <button type="submit" name="delete" id="delete" > --><i class="fa fa-trash delRecord" id="delete-{{$designation->designation_id}}" ></i><!-- </button> -->
                             </span>
                             
                         </td>
@@ -145,7 +147,7 @@
             var confirm = window.confirm("Are you sure you want to delete record ?");
             if(confirm){
                 $.ajax({
-                    url:"{{route('admin.state.delete')}}",
+                    url:"{{route('admin.designation.delete')}}",
                     type: 'POST',
                     data:{"id":id},
                     success: function( msg ) {

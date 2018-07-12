@@ -64,7 +64,7 @@ class StateController extends Controller
     public function create(CreateStateRequest $request)
     {
         return view('Admin.state.create')
-            ->withCountries($this->country->getCountryPaginated(config('access.users.default_per_page'), 1));
+            ->withCountries($this->country->getAllCountry());
     }
 
      /**

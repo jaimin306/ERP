@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\Designation\DesignationRepositoryContract;
-use App\Repositories\Admin\Designation\DesignationRepositoryContract;
+use App\Repositories\Admin\Department\DepartmentRepositoryContract;
+use App\Repositories\Admin\MenuPermission\MenuPermissionRepositoryContract;
+use App\Repositories\Admin\Menu\MenuRepositoryContract;
 use App\Http\Requests\Admin\Designation\CreateDesignationRequest;
 use App\Http\Requests\Admin\Designation\StoreDesignationRequest;
 use App\Http\Requests\Admin\Designation\UpdateDesignationRequest;
@@ -29,17 +31,24 @@ class DesignationController extends Controller
      * @var DepartmentRepositoryContract
      */
     protected $department;
+
+    /**
+     * @var DepartmentRepositoryContract
+     */
+    protected $menu;
     
 
     /**
      * @param DesignationRepositoryContract       $designation
      */
     public function __construct(DesignationRepositoryContract $designation,
-        DepartmentRepositoryContract $department
+        DepartmentRepositoryContract $department,
+        MenuRepositoryContract $menu
     )
     {
         $this->designation = $designation;
         $this->department = $department;
+        $this->menu = $menu;
     }
 
 
@@ -54,17 +63,18 @@ class DesignationController extends Controller
     public function index()
     {
         return view('Admin.designation.designation')
-            ->withDesignation($this->designation->getDesignationPaginated(config('access.users.default_per_page'), 1));
+            ->withDesignations($this->designation->getDesignationPaginated(config('access.users.default_per_page'), 1));
     }
 
     /**
      * @param  CreateUserRequest $request
      * @return mixed
      */
-    public function create(CreateDesgnationRequest $request)
+    public function create(CreateDesignationRequest $request)
     {
         return view('Admin.designation.create')
-            ->withDepartments($this->designation->getDepartmentPaginated(config('access.users.default_per_page'), 1));
+            ->withDepartments($this->department->getAllDepartment())
+            ->withMenus($this->menu->getAllMenu());
     }
 
      /**
