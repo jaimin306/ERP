@@ -59,8 +59,19 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \App\Repositories\Admin\MenuPermission\MenuPermissionRepositoryContract::class,
+            \App\Repositories\Admin\MenuPermission\EloquentMenuPermissionRepository::class
+        );
+
+        $this->app->bind(
             \App\Repositories\Admin\User\UserRepositoryContract::class,
             \App\Repositories\Admin\User\EloquentUserRepository::class
+
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\AccountType\AccountTypeRepositoryContract::class,
+            \App\Repositories\Admin\AccountType\EloquentAccountTypeRepository::class
 
         );
         

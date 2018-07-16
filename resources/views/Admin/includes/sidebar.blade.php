@@ -20,12 +20,13 @@
                         IN+
                     </div>
                 </li>
-                <li class="{{ Active::checkRoutePattern('admin/dashboard') }}">
-                    
+                <li class="{{ active_class(if_route('admin.dashboard')) }}">
                     <a href="{{route('admin.dashboard')}}"  ><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class=""></span></a>
-                    
                 </li>
-                <li class="{{ Request::path() == 'admin/*' ? 'active' : '' }}">
+<!-- $active->checkRoutePattern([]) 
+    {{ active_class(if_route('admin.dashboard')) }}
+-->
+                <li class="{{ active_class(if_route(['admin.country', 'admin.country.create', 'admin.state', 'admin.state.create', 'admin.department', 'admin.department.create', 'admin.designation', 'admin.designation.create', 'admin.accountType', 'admin.accountType.create', 'admin.user', 'admin.user.create' ]) ) }}">
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a>
                     <!-- <ul class="nav nav-second-level collapse"> -->
                         <!-- <li class="{{ Active::checkRoutePattern('admin/country/*') }}" ><a href="{{route('admin.country')}}">Countries</a></li>
@@ -35,13 +36,25 @@
                         
                             <!-- <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Master</span> <span class="fa arrow"></span></a> -->
                             <ul class="nav nav-second-level collapse">
-                                <li class="{{ Request::path() == 'admin/country' ? 'active' : '' }}"><a href="{{route('admin.country')}}">Countries</a></li>
-                                <li class="{{ Request::path() == 'admin/state' ? 'active' : '' }}"><a href="{{route('admin.state')}}">States</a></li>
-                                <li class="{{ Request::path() == 'admin/department' ? 'active' : '' }}"><a href="{{route('admin.department')}}">Departments</a></li>
-                                <li class="{{ Request::path() == 'admin/designation' ? 'active' : '' }}"><a href="{{route('admin.designation')}}">Designation</a></li>
-                                <li ><a href="{{route('admin.accountType')}}">Account Type</a></li>
-                                <li><a href="{{route('admin.accountType')}}">Default Account</a></li>
-                                <li class="{{ Request::path() == 'admin/user' ? 'active' : '' }}"><a href="{{route('admin.user')}}">User</a></li>
+                                <li class="{{ active_class(if_route(['admin.country', 'admin.country.create'])) }}">
+                                   <a href="{{route('admin.country')}}">Countries</a>
+                                </li>
+                                <li class="{{ active_class(if_route(['admin.state', 'admin.state.create'])) }}">
+                                    <a href="{{route('admin.state')}}">States</a>
+                                </li>
+                                <li class="{{ active_class(if_route(['admin.department', 'admin.department.create'])) }}">
+                                    <a href="{{route('admin.department')}}">Departments</a>
+                                </li>
+                                <li class="{{ active_class(if_route(['admin.designation', 'admin.designation.create'])) }}">
+                                    <a href="{{route('admin.designation')}}">Designation</a>
+                                </li>
+                                <li class="{{ active_class(if_route(['admin.accountType', 'admin.accountType.create'])) }}">
+                                    <a href="{{route('admin.accountType')}}">Account Type</a>
+                                </li>
+                                <li class="{{ active_class(if_route(['admin.accountType', 'admin.accountType.create'])) }}">
+                                    <a href="{{route('admin.accountType')}}">Default Account</a>
+                                </li>
+                                <li class="{{ active_class(if_route(['admin.user', 'admin.user.create'])) }}"><a href="{{route('admin.user')}}">User</a></li>
                             </ul>
                 </li>
                 <li>
