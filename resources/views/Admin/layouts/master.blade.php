@@ -28,7 +28,10 @@
 </head>
 
 <body class="">
-
+<?php 
+//echo "string";
+//print_r($_SESSION);
+?>
     <div id="wrapper">
         @include('Admin.includes.sidebar')
         <div id="page-wrapper" class="gray-bg">

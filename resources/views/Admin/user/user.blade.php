@@ -1,13 +1,13 @@
 
 @extends('Admin.layouts.master') 
 
-@section('title', 'Country')
+@section ('title', 'Users')
 
 @section('content')
 
-@if (session('flash_message'))
+@if (session('status'))
     <div class="alert alert-success">
-        {{ session('flash_message') }}
+        {{ session('status') }}
     </div>
 @else
     <!-- <div class="alert alert-success">
@@ -17,10 +17,14 @@
     </div> -->
 @endif
 
+   @if ($message = Session::get('success'))
+       <div class="alert alert-success">
+           <p>{{ $message }}</p>
+       </div>
+   @endif
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Country</h2>
-
+            <h2>User</h2>
             <!-- <ol class="breadcrumb">
                 <li>
                     <a href="index-2.html">Home</a>
@@ -39,7 +43,9 @@
     </div>
 
 
-        
+     <?php
+     //echo "<pre>"; print_r($states)
+     ?>   
             <div class="wrapper wrapper-content">
                
             <div class="row">
@@ -48,47 +54,48 @@
                         <div class="ibox-title">
                             
                             <h5 style="width: 100%;">
-                                Manage Country 
-                                <a href="{{route('admin.country.create')}}" class="btn btn-success btn-sm pull-right" ><i class="fa fa-plus"></i> <b>Add</b></a>
+                                Manage Users 
+                                <a href="{{route('admin.user.create')}}" class="btn btn-success btn-sm pull-right" ><i class="fa fa-plus"></i> <b>Add</b></a>
                             </h5>
                         </div>
                         <div class="ibox-content">
 
                         <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                    <table class="table table-striped table-bordered table-hover dataTables-example" id="dataTables" >
 
                     <thead>
                     <tr>
-                        <th>Short Code</th>
-                        <th>Name</th>
-                        <th>Phone Code</th>
-                        <!-- <th>Status</th> -->
+                        <th>User Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        
+                        <!-- <th>Department</th>
+                        <th>Designation</th> -->
+                        
                         <th>Action</th>
-                        <!-- <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th> -->
+                        
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($countries as $country)
+                        @foreach($users as $user)
                     <tr class="gradeX">
-                        <td>{{$country->name}}</td>
-                        <td>{{$country->shortname}}</td>
-                        <td>{{$country->phonecode}}</td>
-                        <span class="hidden">{{$country->id}}</span>
-                        <!-- <td>Status</td> -->
+                        <td>{{$user->user_name}}</td>
+                        <td>{{$user->first_name}}</td>
+                        <td>{{$user->last_name}}</td>
+                        <td>{{$user->email}}</td>
+                        
                         <td class="center">
-                            
-                            <span class="btn btn-xs btn-primary editData" id="edit-{{$country->id}}">
-                            <a href="{{route('admin.country.edit', $country->id)}}">
+                            <a href="{{route('admin.user.edit', $user->id)}}">
+                            <span class="btn btn-xs btn-primary editData" id="edit-{{$user->id}}">
                                 <i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"></i>
+                            </span>
                             </a>
+                            
+                            <span class="btn btn-xs btn-danger delRecord">
+                                <!-- <button type="submit" name="delete" id="delete" > --><i class="fa fa-trash " id="delete-{{$user->id}}" ></i><!-- </button> -->
                             </span>
-                            <!-- <form name="del_rec" id="del_rec" method="post" action="{{route('admin.country.delete', $country->id)}}" > -->
-                            <span class="btn btn-xs btn-danger">
-                                <!-- <button type="submit" name="delete" id="delete" > --><i class="fa fa-trash delRecord" id="delete-{{$country->id}}" ></i><!-- </button> -->
-                            </span>
-                            <!-- </form> -->
+                            
                         </td>
                         <!-- <td>Internet
                             Explorer 4.0
@@ -119,11 +126,8 @@
 
 <script>
     $(document).ready(function () {
-       /* $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });*/
-//$('.dataTables-example').DataTable();
+       
+
             $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,
@@ -150,21 +154,22 @@
     });
 
     $(".delRecord").on('click', function(){ 
-        var id = $(this).attr('id').split("-")[1];
+        var id = $(this).children().attr('id').split("-")[1];
 
         if(id){
             var confirm = window.confirm("Are you sure you want to delete record ?");
             if(confirm){
                 $.ajax({
-                    url:"{{route('admin.country.delete')}}",
+                    url:"{{route('admin.user.delete')}}",
                     type: 'POST',
                     data:{"id":id},
                     success: function( msg ) {
                         //alert(msg);
                         if ( msg.status === 1 ) {
                           //alert("sdf");   
-                            //toastr.success("Successfully deleted" );
+                            toastr.success("Successfully deleted" );
                             //toastr.success("Record inserted successfully.");
+                            //$("#dataTables").DataTable().ajax.reload(null, false );
                             setInterval(function() {
                                 window.location.reload();
                             }, 1000);
@@ -177,8 +182,6 @@
         return false;
         
     });
-
-    
 </script>
 
 @stop

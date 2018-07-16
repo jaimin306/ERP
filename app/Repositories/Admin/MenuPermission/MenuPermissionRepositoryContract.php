@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Admin\Country;
+namespace App\Repositories\Admin\MenuPermission;
 
 /**
  * Interface UserRepositoryContract
  * @package App\Repositories\User
  */
-interface CountryRepositoryContract
+interface MenuPermissionRepositoryContract
 {
     /**
      * @param  $id
@@ -22,22 +22,22 @@ interface CountryRepositoryContract
      * @param  $status
      * @return mixed
      */
-    public function getCountryPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc');
+    public function getMenuPermissionPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc');
 
     /**
      * @param  $per_page
      * @return \Illuminate\Pagination\Paginator
      */
-    public function getDeletedCountryPaginated($per_page);
+    public function getDeletedMenuPermissionPaginated($per_page);
 
     /**
      * @param  string  $order_by
      * @param  string  $sort
      * @return mixed
      */
-    public function getAllCountry($order_by = 'id', $sort = 'asc');
+    public function getAllMenuPermission($order_by = 'id', $sort = 'asc');
 
-    public function create($input);
+    public function create($input, $designation_id);
 
     public function update($input);
 

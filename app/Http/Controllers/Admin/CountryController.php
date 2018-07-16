@@ -64,9 +64,10 @@ class CountryController extends Controller
     	
 		$input = $request->all();
         $country = $this->country->create($request->all());
-
-        return redirect()->route('admin.country')->withFlashSuccess('Record inserted successfully');
-        //return redirect()->route('admin.country')->with('status', 'New book was added');
+        \Session::flash('flash_message','Office successfully added.'); //<--FLASH MESSAGE
+        //return redirect()->route('admin.country')->withFlashSuccess('Record inserted successfully');
+        return redirect()->route('admin.country');
+        //->with('status', 'New book was added');
     }
 
     public function edit($id)
@@ -89,6 +90,7 @@ class CountryController extends Controller
         //return Response::json($response);
         //return response()->json($response);
         return redirect()->route('admin.country')->withFlashSuccess('Record updated successfully');
+        
     }
 
     /**

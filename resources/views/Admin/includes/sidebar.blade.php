@@ -41,6 +41,7 @@
                                 <li class="{{ Request::path() == 'admin/designation' ? 'active' : '' }}"><a href="{{route('admin.designation')}}">Designation</a></li>
                                 <li ><a href="{{route('admin.accountType')}}">Account Type</a></li>
                                 <li><a href="{{route('admin.accountType')}}">Default Account</a></li>
+                                <li class="{{ Request::path() == 'admin/user' ? 'active' : '' }}"><a href="{{route('admin.user')}}">User</a></li>
                             </ul>
                 </li>
                 <li>

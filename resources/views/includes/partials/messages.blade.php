@@ -1,4 +1,4 @@
-@if (Session::get('flash_success'))
+@if (\Session::get('flash_success'))
     <div class="alert alert-success">
         @if(is_array(json_decode(Session::get('flash_success'), true)))
             {!! implode('', Session::get('flash_success')->all(':message<br/>')) !!}
@@ -6,7 +6,7 @@
             {!! Session::get('flash_success') !!}
         @endif
     </div>
-@elseif (Session::get('flash_warning'))
+@elseif (\Session::get('flash_warning'))
     <div class="alert alert-warning">
         @if(is_array(json_decode(Session::get('flash_warning'), true)))
             {!! implode('', Session::get('flash_warning')->all(':message<br/>')) !!}
@@ -14,7 +14,7 @@
             {!! Session::get('flash_warning') !!}
         @endif
     </div>
-@elseif (Session::get('flash_info'))
+@elseif (\Session::get('flash_info'))
     <div class="alert alert-info">
         @if(is_array(json_decode(Session::get('flash_info'), true)))
             {!! implode('', Session::get('flash_info')->all(':message<br/>')) !!}

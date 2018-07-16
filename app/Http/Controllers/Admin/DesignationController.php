@@ -37,6 +37,11 @@ class DesignationController extends Controller
      * @var DepartmentRepositoryContract
      */
     protected $menu;
+
+    /**
+     * @var DepartmentRepositoryContract
+     */
+    protected $menu_permission;
     
 
     /**
@@ -44,12 +49,14 @@ class DesignationController extends Controller
      */
     public function __construct(DesignationRepositoryContract $designation,
         DepartmentRepositoryContract $department,
-        MenuRepositoryContract $menu
+        MenuRepositoryContract $menu,
+        MenuPermissionRepositoryContract $menu_permission
     )
     {
         $this->designation = $designation;
         $this->department = $department;
         $this->menu = $menu;
+        $this->menu_permission = $menu_permission;
     }
 
 
@@ -84,27 +91,29 @@ class DesignationController extends Controller
      */
     public function store(StoreDesignationRequest $request)
     {
-        
         $input = $request->all();
-        $designation = $this->designation->create($request->all());
-        $designation = $this->designation->create($request->all());
-
+        
+        $designation_id = $this->designation->create($request->all());
+        $menu_permission = $this->menu_permission->create($request->all(),$designation_id);
+       
         return redirect()->route('admin.designation')->withFlashSuccess('Record inserted successfully');
     }
 
     public function edit($id)
     {
-        //echo "string";die;
         $designation = $this->designation->findOrThrowException( $id );
+        $menu_permissions = $this->menu_permission->getDesignationPermission( $id );
         $departments = $this->department->getAllDepartment();
+        $menus = $this->menu->getAllMenu();
         //print_r($designation);die;
-        return view('Admin.designation.create', ["designation"=>$designation, "departments"=>$departments]);
+        return view('Admin.designation.create', ["designation"=>$designation, "departments"=>$departments, 'menus' => $menus, 'menu_permissions'=>$menu_permissions]);
     }
 
     public function update(UpdateDesignationRequest $request)
     {
         $id = $request->id;//die;
-        $this->designation->update($request->all() );
+        $designation = $this->designation->update($request->all() );
+        $menu_permission = $this->menu_permission->update($request->all());
 
         $response = array(
             'status' => 'success',
@@ -125,8 +134,9 @@ class DesignationController extends Controller
     public function delete(PermanentlyDeleteDesignationRequest $request)
     {
         $id = $request->id;
-        
+        $menu_permission = $this->menu_permission->delete($id);
         $destroyed = $this->designation->delete($id);
+        
         $json['status'] = $destroyed ? 1 : 0;
         
         return response()->json($json);

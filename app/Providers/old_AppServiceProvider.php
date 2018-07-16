@@ -58,8 +58,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Admin\Menu\EloquentMenuRepository::class
         );
 
-        
-    
+        $this->app->bind(
+            \App\Repositories\Admin\User\UserRepositoryContract::class,
+            \App\Repositories\Admin\User\EloquentUserRepository::class
+
+        );
         
 
     }

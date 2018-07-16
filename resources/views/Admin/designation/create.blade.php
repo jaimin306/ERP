@@ -25,9 +25,12 @@
 
         </div>
     </div>
-
 <?php
-//print_r($menus);
+    /*if (!empty(Request::segment(4)) ) {
+        if (isset($menu_permissions[$x]) ) {
+            
+        }
+    }*/
 ?>
   
             <div class="wrapper wrapper-content">
@@ -90,25 +93,30 @@
                                                </tr>
                                            </thead>
                                         @foreach($menus as $menu)
+                                            @php
+                                             $x = $menu->id-1;
+                                            @endphp
+                                             
+                                            {{-- $menu_permissions[$x]['create']." = ".$menu->id --}}
                                             <tr>
-                                                <input type="text" name="menu_id_{{$menu->id}}" id="menu_id_{{$menu->id}}" >
+                                                <input type="hidden" name="menu_id[{{$menu->id}}]" id="menu_id_{{$menu->id}}" value="{{$menu->id}}"  >
                                                 <td class="col-lg-1">
                                                     <input type="checkbox" name="chk_all_{{$menu->id}}" id="chk_all_{{$menu->id}}" >
                                                 </td>
                                                 <td class="col-lg-3">
-                                                    {{$menu->label}}
+                                                    <label>{{$menu->label}}</label>
                                                 </td>
                                                 <td class="col-lg-2">
-                                                    <input type="checkbox" name="chk_create_{{$menu->id}}" id="chk_create_{{$menu->id}}" >
+                                                    <input type="checkbox" name="chk_create[{{$menu->id}}]" id="chk_create_{{$menu->id}}" value="{{$menu->id}}" @if( (!empty(Request::segment(4)) ) && ( (isset($menu_permissions[$x]) ) && ($menu->id == $menu_permissions[$x]['create'] )) ) checked="checked" @endif >
                                                 </td>
                                                 <td class="col-lg-2">
-                                                    <input type="checkbox" name="chk_edit_{{$menu->id}}" id="chk_edit_{{$menu->id}}" >
+                                                    <input type="checkbox" name="chk_edit[{{$menu->id}}]" id="chk_edit_{{$menu->id}}" value="{{$menu->id}}" @if( (!empty(Request::segment(4)) ) && ( (isset($menu_permissions[$x]) ) &&  ($menu->id == $menu_permissions[$x]['edit'] ) ) ) checked="checked" @endif >
                                                 </td>
                                                 <td class="col-lg-2">
-                                                    <input type="checkbox" name="chk_delete_{{$menu->id}}" id="chk_delete_{{$menu->id}}" >
+                                                    <input type="checkbox" name="chk_delete[{{$menu->id}}]" id="chk_delete_{{$menu->id}}" value="{{$menu->id}}" @if( (!empty(Request::segment(4)) ) && ( (isset($menu_permissions[$x]) ) &&  ($menu->id == $menu_permissions[$x]['delete'] )) ) checked="checked" @endif >
                                                 </td>
                                                 <td class="col-lg-2">
-                                                    <input type="checkbox" name="chk_view_{{$menu->id}}" id="chk_view_{{$menu->id}}" >
+                                                    <input type="checkbox" name="chk_view[{{$menu->id}}]" id="chk_view_{{$menu->id}}" value="{{$menu->id}}" @if( (!empty(Request::segment(4)) ) && ( (isset($menu_permissions[$x]) ) &&  ($menu->id == $menu_permissions[$x]['view'] ) ) ) checked="checked" @endif >
                                                 </td>
                                                 
                                             </tr>
@@ -184,13 +192,17 @@ $(document).ready(function(){
         if ( $(this).is(":checked") ) {
             if ( ($("#chk_edit_"+id).is(":checked")) && ($("#chk_delete_"+id).is(":checked")) && ($("#chk_view_"+id).is(":checked")) ) {
                 $("#chk_all_"+id).prop("checked",true);
-                
             }
             $("#menu_id_"+id).val(id);
         }else {
+            if ( ($("#chk_edit_"+id).is(":checked")) || ($("#chk_delete_"+id).is(":checked")) || ($("#chk_view_"+id).is(":checked")) ) {
+                $("#menu_id_"+id).val(id);
+            }else{
+                $("#menu_id_"+id).val('');
+            }
 
             $("#chk_all_"+id).prop("checked",false);
-            $("#menu_id_"+id).val('');
+            
         }
 
     }); 
@@ -205,8 +217,13 @@ $(document).ready(function(){
             $("#menu_id_"+id).val(id);
         }else {
 
+            if ( ($("#chk_create_"+id).is(":checked")) || ($("#chk_delete_"+id).is(":checked")) || ($("#chk_view_"+id).is(":checked")) ) {
+                $("#menu_id_"+id).val(id);
+            }else{
+                $("#menu_id_"+id).val('');    
+            }
             $("#chk_all_"+id).prop("checked",false);
-            $("#menu_id_"+id).val('');
+            
         }
 
     }); 
@@ -221,8 +238,14 @@ $(document).ready(function(){
             $("#menu_id_"+id).val(id);
         }else {
 
+            if ( ($("#chk_edit_"+id).is(":checked")) || ($("#chk_create_"+id).is(":checked")) || ($("#chk_view_"+id).is(":checked")) ) {
+                $("#menu_id_"+id).val(id);
+            }else{
+                $("#menu_id_"+id).val('');    
+            }
+
             $("#chk_all_"+id).prop("checked",false);
-            $("#menu_id_"+id).val('');
+            
         }
 
     }); 
@@ -237,8 +260,15 @@ $(document).ready(function(){
             $("#menu_id_"+id).val(id);
         }else {
 
+
+            if ( ($("#chk_edit_"+id).is(":checked")) || ($("#chk_delete_"+id).is(":checked")) || ($("#chk_create_"+id).is(":checked")) ) {
+                $("#menu_id_"+id).val(id);
+            }else{
+                $("#menu_id_"+id).val('');    
+            }
+
             $("#chk_all_"+id).prop("checked",false);
-            $("#menu_id_"+id).val('');
+            
         }
 
     });

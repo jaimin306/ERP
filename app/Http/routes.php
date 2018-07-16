@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     require (__DIR__ . '/Routes/Admin/Designation.php');
     require (__DIR__ . '/Routes/Admin/Setting.php');
     require (__DIR__ . '/Routes/Admin/AccountType.php');
+    require (__DIR__ . '/Routes/Admin/User.php');
     /*require (__DIR__ . '/Routes/Backend/Access.php');
     require (__DIR__ . '/Routes/Backend/LogViewer.php');*/
 });

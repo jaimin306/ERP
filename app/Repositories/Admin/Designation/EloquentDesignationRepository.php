@@ -172,17 +172,29 @@ class EloquentDesignationRepository implements DesignationRepositoryContract
      */
     public function delete($id)
     {
-        //print_r($id);echo "string";die;
+        //print_r($id);echo "designa string";die;
 
         $designation = $this->findOrThrowException($id, true);
 
         try {
+            //echo "string";die;
             $designation->delete();
+            //echo "string";die;
             return true;
 
         } catch (\Exception $e) {
+            print_r($e->getMessage());
            // throw new GeneralException($e->getMessage());
         }
+    }
+
+    public function getDepartmentDesignation($dept_id)
+    {
+        $desg = Designation::where('department_id', $dept_id)->get();
+        return $desg;
+        //print_r($desg);die;
+            /*->orderBy($order_by, $sort)
+            ->paginate($per_page);*/
     }
     
 }

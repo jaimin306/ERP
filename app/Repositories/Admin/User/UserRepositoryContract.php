@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Admin\Designation;
+namespace App\Repositories\Admin\User;
 
 /**
  * Interface UserRepositoryContract
  * @package App\Repositories\User
  */
-interface DesignationRepositoryContract
+interface UserRepositoryContract
 {
     /**
      * @param  $id
@@ -22,20 +22,20 @@ interface DesignationRepositoryContract
      * @param  $status
      * @return mixed
      */
-    public function getDesignationPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc');
+    public function getUserPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc');
 
     /**
      * @param  $per_page
      * @return \Illuminate\Pagination\Paginator
      */
-    public function getDeletedDesignationPaginated($per_page);
+    public function getDeletedUserPaginated($per_page);
 
     /**
      * @param  string  $order_by
      * @param  string  $sort
      * @return mixed
      */
-    public function getAllDesignation($order_by = 'id', $sort = 'asc');
+    public function getAllUser($order_by = 'id', $sort = 'asc');
 
     public function create($input);
 
@@ -43,7 +43,7 @@ interface DesignationRepositoryContract
 
     public function delete($id);
 
-    public function getDepartmentDesignation($dept_id);
+    public function chkUniqueUserEmail($email);
 
    
 }
