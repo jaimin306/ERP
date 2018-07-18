@@ -9,7 +9,6 @@ use App\Http\Requests\Admin\Country\StoreCountryRequest;
 use App\Http\Requests\Admin\Country\UpdateCountryRequest;
 use App\Http\Requests\Admin\Country\DeleteCountryRequest;
 use App\Http\Requests;
-
 use Session;
 
 
@@ -64,7 +63,7 @@ class CountryController extends Controller
     	
 		$input = $request->all();
         $country = $this->country->create($request->all());
-        \Session::flash('flash_message','Office successfully added.'); //<--FLASH MESSAGE
+        Session::flash('flash_message','Office successfully added.'); //<--FLASH MESSAGE
         //return redirect()->route('admin.country')->withFlashSuccess('Record inserted successfully');
         return redirect()->route('admin.country');
         //->with('status', 'New book was added');
@@ -89,7 +88,8 @@ class CountryController extends Controller
         );
         //return Response::json($response);
         //return response()->json($response);
-        return redirect()->route('admin.country')->withFlashSuccess('Record updated successfully');
+        //return redirect()->route('admin.country')->withFlashSuccess('Record updated successfully');
+        return redirect()->route('admin.country')->with('success','Product updated successfully');
         
     }
 

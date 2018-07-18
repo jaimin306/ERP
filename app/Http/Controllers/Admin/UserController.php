@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Http\Requests\Admin\User\PermanentlyDeleteUserRequest;
 use App\Http\Requests\Admin\User\GetDesignationRequest;
+use App\Http\Requests\Admin\User\UserEmailRequest;
 use App\Http\Requests;
 
 
@@ -139,25 +140,26 @@ class UserController extends Controller
         //echo $id."dsd";
         $designation = $this->designation->getDepartmentDesignation($id);
 
-        if ($request->desg_id != '') {
-            $selected = 'selected=selected';
-        }else{
-            $selected = '';
-        }
+        
 
         $str = '';
         $str.='<select name="designation_id" id="designation_id" class="form-control" >';
         $str.='<option value="">Select Designation</option>';
         foreach ($designation as $designation) {
+            if ( ($request->desg_id != '') && ($request->desg_id == $designation->id) ) {
+                $selected = 'selected=selected';
+            }else{
+                $selected = '';
+            }
             $str.='<option value="'.$designation->id.'" '.$selected.' >'.$designation->designation_name.'</option>';
         }
         $str.='</select>';
         echo $str;
     }
 
-    public function chkUserEmail($email)
+    public function chkUserEmail($email, UserEmailRequest $request)
     {
-        $user = $this->user->chkUniqueUserEmail($email);
+        $user = $this->user->chkUniqueUserEmail($email, $request->edit_id);
         echo count($user);
         //print_r($user);
     }

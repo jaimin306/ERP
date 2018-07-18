@@ -1,7 +1,7 @@
 input.error,textarea.error,select.error{
    border:1px solid #cc5965
 !important;
-   color: #d59392
+   color: #a53836
 ;
 }
 .error:focus{

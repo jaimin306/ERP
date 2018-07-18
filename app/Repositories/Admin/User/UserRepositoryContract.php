@@ -43,7 +43,7 @@ interface UserRepositoryContract
 
     public function delete($id);
 
-    public function chkUniqueUserEmail($email);
+    public function chkUniqueUserEmail($email, $eid);
 
    
 }

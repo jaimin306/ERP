@@ -63,7 +63,7 @@
                             @endif
                             <!-- <form method="get" class="form-horizontal"> -->
                                 <div class="form-group">
-                                    {!! Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) !!}
+                                    {!! Form::label('name', 'Name  <span class="text-danger"> *</span>', ['class' => 'col-lg-2 control-label'], false) !!}
                                     <!-- <label class="col-sm-2 control-label">Normal</label> -->
                                     <div class="col-sm-4">
                                         <!-- <input type="text" class="form-control"> -->
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {!! Form::label('name', 'Short Name', ['class' => 'col-lg-2 control-label']) !!}
+                                    {!! Form::label('name', 'Short Name  <span class="text-danger"> *</span>', ['class' => 'col-lg-2 control-label'], false) !!}
                                     <!-- <label class="col-sm-2 control-label">Normal</label> -->
                                     <div class="col-sm-4">
                                         <!-- <input type="text" class="form-control"> -->
@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {!! Form::label('name', 'Phone Code', ['class' => 'col-lg-2 control-label']) !!}
+                                    {!! Form::label('name', 'Phone Code  <span class="text-danger"> *</span>', ['class' => 'col-lg-2 control-label'], false) !!}
                                     <!-- <label class="col-sm-2 control-label">Normal</label> -->
                                     <div class="col-sm-4">
                                         <!-- <input type="text" class="form-control"> -->

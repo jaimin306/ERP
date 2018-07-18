@@ -186,5 +186,13 @@ class EloquentStateRepository implements StateRepositoryContract
            // throw new GeneralException($e->getMessage());
         }
     }
+
+
+
+    public function getCountryState($country_id)
+    {
+        $state = State::where('country_id', $country_id)->get();
+        return $state;
+    }
     
 }

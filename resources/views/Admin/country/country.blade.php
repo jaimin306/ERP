@@ -5,33 +5,15 @@
 
 @section('content')
 
-@if (session('flash_message'))
-    <div class="alert alert-success">
-        {{ session('flash_message') }}
-    </div>
-@else
-    <!-- <div class="alert alert-success">
-        @php
-        
-        @endphp
-    </div> -->
-@endif
 
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
             <h2>Country</h2>
-
-            <!-- <ol class="breadcrumb">
-                <li>
-                    <a href="index-2.html">Home</a>
-                </li>
-                <li>
-                    <a>Forms</a>
-                </li>
-                <li class="active">
-                    <strong>Basic Form</strong>
-                </li>
-            </ol> -->
         </div>
         <div class="col-lg-2">
 
@@ -45,13 +27,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            
-                            <h5 style="width: 100%;">
-                                Manage Country 
-                                <a href="{{route('admin.country.create')}}" class="btn btn-success btn-sm pull-right" ><i class="fa fa-plus"></i> <b>Add</b></a>
-                            </h5>
+                        <div class="ibox-title ">
+                            <h5 class="m-t-5">Manage Country</h5>
+                            <div class="ibox-tools">
+                                <a href="{{route('admin.country.create')}}">
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i> <b>Add</b></button>
+                                </a>
+                            </div>
                         </div>
+                        
+                       
                         <div class="ibox-content">
 
                         <div class="table-responsive">
@@ -59,43 +44,31 @@
 
                     <thead>
                     <tr>
+                        <th style="width: 7%">No.</th>
                         <th>Short Code</th>
                         <th>Name</th>
                         <th>Phone Code</th>
-                        <!-- <th>Status</th> -->
-                        <th>Action</th>
-                        <!-- <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th> -->
+                        <th style="width: 5%">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($countries as $country)
+                        @foreach($countries as $key => $country)
                     <tr class="gradeX">
+                        <td>{{++$key}}</td>
                         <td>{{$country->name}}</td>
                         <td>{{$country->shortname}}</td>
                         <td>{{$country->phonecode}}</td>
                         <span class="hidden">{{$country->id}}</span>
-                        <!-- <td>Status</td> -->
                         <td class="center">
-                            
-                            <span class="btn btn-xs btn-primary editData" id="edit-{{$country->id}}">
                             <a href="{{route('admin.country.edit', $country->id)}}">
+                            <span class="btn btn-xs btn-primary editData" id="edit-{{$country->id}}">
                                 <i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"></i>
+                            </span>
                             </a>
+                            <span class="btn btn-xs btn-danger delRecord">
+                                <i class="fa fa-trash " id="delete-{{$country->id}}" ></i><!-- </button> -->
                             </span>
-                            <!-- <form name="del_rec" id="del_rec" method="post" action="{{route('admin.country.delete', $country->id)}}" > -->
-                            <span class="btn btn-xs btn-danger">
-                                <!-- <button type="submit" name="delete" id="delete" > --><i class="fa fa-trash delRecord" id="delete-{{$country->id}}" ></i><!-- </button> -->
-                            </span>
-                            <!-- </form> -->
                         </td>
-                        <!-- <td>Internet
-                            Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td class="center">4</td> -->
-                        
                     </tr>
                         @endforeach
                    
@@ -119,11 +92,7 @@
 
 <script>
     $(document).ready(function () {
-       /* $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });*/
-//$('.dataTables-example').DataTable();
+    
             $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,
@@ -150,7 +119,7 @@
     });
 
     $(".delRecord").on('click', function(){ 
-        var id = $(this).attr('id').split("-")[1];
+        var id = $(this).children().attr('id').split("-")[1];
 
         if(id){
             var confirm = window.confirm("Are you sure you want to delete record ?");

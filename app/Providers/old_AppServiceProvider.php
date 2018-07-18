@@ -66,13 +66,46 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Repositories\Admin\User\UserRepositoryContract::class,
             \App\Repositories\Admin\User\EloquentUserRepository::class
-
         );
 
         $this->app->bind(
             \App\Repositories\Admin\AccountType\AccountTypeRepositoryContract::class,
             \App\Repositories\Admin\AccountType\EloquentAccountTypeRepository::class
+        );
 
+        $this->app->bind(
+            \App\Repositories\Admin\BankAccount\BankAccountRepositoryContract::class,
+            \App\Repositories\Admin\BankAccount\EloquentBankAccountRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\Settings\SettingsRepositoryContract::class,
+            \App\Repositories\Admin\Settings\EloquentSettingsRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\VendorType\VendorTypeRepositoryContract::class,
+            \App\Repositories\Admin\VendorType\EloquentVendorTypeRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\Vendor\VendorRepositoryContract::class,
+            \App\Repositories\Admin\Vendor\EloquentVendorRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\ItemType\ItemTypeRepositoryContract::class,
+            \App\Repositories\Admin\ItemType\EloquentItemTypeRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\ItemCategory\ItemCategoryRepositoryContract::class,
+            \App\Repositories\Admin\ItemCategory\EloquentItemCategoryRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\Item\ItemRepositoryContract::class,
+            \App\Repositories\Admin\Item\EloquentItemRepository::class
         );
         
 

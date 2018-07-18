@@ -1,6 +1,6 @@
 <?php
 
-//Route::group(['middleware' => 'web'], function() {
+Route::group(['middleware' => 'web'], function() {
     /**
      * Switch between the included languages
      */
@@ -16,7 +16,7 @@
         require (__DIR__ . '/Routes/Frontend/Frontend.php');
         require (__DIR__ . '/Routes/Frontend/Access.php');
     });*/
-//});
+});
 
 /**
  * Backend Routes
@@ -40,9 +40,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     require (__DIR__ . '/Routes/Admin/State.php');
     require (__DIR__ . '/Routes/Admin/Department.php');
     require (__DIR__ . '/Routes/Admin/Designation.php');
-    require (__DIR__ . '/Routes/Admin/Setting.php');
     require (__DIR__ . '/Routes/Admin/AccountType.php');
     require (__DIR__ . '/Routes/Admin/User.php');
+    require (__DIR__ . '/Routes/Admin/BankAccount.php');
+    require (__DIR__ . '/Routes/Admin/Settings.php');
+    require (__DIR__ . '/Routes/Admin/VendorType.php');
+    require (__DIR__ . '/Routes/Admin/Vendor.php');
+    require (__DIR__ . '/Routes/Admin/ItemCategory.php');
+    require (__DIR__ . '/Routes/Admin/ItemType.php');
+    require (__DIR__ . '/Routes/Admin/Item.php');
     /*require (__DIR__ . '/Routes/Backend/Access.php');
     require (__DIR__ . '/Routes/Backend/LogViewer.php');*/
 });

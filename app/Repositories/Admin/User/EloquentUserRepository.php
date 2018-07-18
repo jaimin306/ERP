@@ -208,9 +208,15 @@ class EloquentUserRepository implements UserRepositoryContract
         }
     }
 
-    public function chkUniqueUserEmail($email)
+    public function chkUniqueUserEmail($email, $eid)
     {
-        $user = User::where('email', $email)->get();
+        if ($eid != '') {
+            $user = User::where('email', $email)->where('id', '<>' , $eid)->get();
+            //print_r(DB::getQueryLog());die;
+        }else{
+            $user = User::where('email', $email)->get();    
+        }
+        
         return $user;
     }
     

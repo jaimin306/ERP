@@ -58,7 +58,7 @@
                             <!-- <form method="get" class="form-horizontal"> -->
 
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">Select Department</label>
+                                    <label class="col-lg-2 control-label">Select Department <span class="text-danger"> *</span></label>
                                     <div class="col-sm-4">
                                         <select name="department_id" id="department_id" class="form-control" >
                                             <option value="">Select Department</option>
@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {!! Form::label('name', 'Name', ['class' => 'col-lg-2 control-label']) !!}
+                                    {!! Form::label('name', 'Name <span class="text-danger"> *</span>', ['class' => 'col-lg-2 control-label'], false) !!}
                                     <!-- <label class="col-sm-2 control-label">Normal</label> -->
                                     <div class="col-sm-4">
                                         <input type="text" class="form-control" name="designation_name" id="name" value="@if(!empty(Request::segment(4))) {{$designation->designation_name}} @endif" >

@@ -16,11 +16,14 @@
     <link href="{{ URL::asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
     <link href="{{URL::asset('css/animate.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/plugins/select2/select2.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">
 
     <link href="{{URL::asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
 
     <link href="{{URL::asset('css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+    
     <link href="{{URL::asset('css/custom.css')}}" rel="stylesheet">
     {!! Html::style('css/toastr.min.css') !!}
     
@@ -66,12 +69,17 @@
     <!-- iCheck -->
     {!! Html::script('js/plugins/iCheck/icheck.min.js') !!}
     {!! Html::script('js/plugins/dataTables/datatables.min.js') !!}
+    {!! Html::script('js/plugins/select2/select2.full.min.js') !!}
+    {!! Html::script('js/plugins/datapicker/bootstrap-datepicker.js') !!}
      {!! Html::script('js/inspinia.js') !!}
 
 
     {!! Html::script('js/plugins/pace/pace.min.js') !!}
     {!! Html::script('js/plugins/validate/jquery.validate.min.js') !!}
     {!! Html::script('js/toastr.min.js') !!}
+
+    {!! Html::script('js/plugins/ckeditor/ckeditor.js') !!}
+    {!! Html::script('js/plugins/ckeditor/adapters/jquery.js') !!}
     
 
     
